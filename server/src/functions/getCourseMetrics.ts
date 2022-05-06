@@ -1,9 +1,9 @@
-import { without } from 'lodash';
+import { isEmpty, without } from 'lodash';
 import { raw } from 'objection';
 
 import { unknownSemester } from '../constants';
 import { Difficulty } from '../enums';
-import { CourseMetric as CM, Domain, Review } from '../models';
+import { CourseMetric as CM, Domain, Review, ReviewReport } from '../models';
 
 class Metric extends Domain {
   static tableName = '_virtual';
@@ -27,7 +27,11 @@ class Metric extends Domain {
   rating_mode!: number;
   rating_min!: number;
   rating_max!: number;
+
+  reports!: ReviewReport[];
 }
+
+const isValid = (metric: Metric): boolean => isEmpty(metric.reports);
 
 const toCourseMetrics = (
   metric: Metric,
@@ -78,8 +82,13 @@ export const getCourseMetrics = async (
           .select(raw(`max(${col}) as ${col}_max`)),
       ),
     )
-    .select(raw(`cast(count(id) as integer) as count`))
+    .select(raw(`cast(count(${Review.tableName}.id) as integer) as count`))
     .from(Review.tableName)
+    .leftJoin(
+      ReviewReport.tableName,
+      `${Review.tableName}.id`,
+      `${ReviewReport.tableName}.review_id`,
+    )
     .modify(
       (query) => courseIds.length && query.whereIn('course_id', courseIds),
     )
@@ -93,5 +102,5 @@ export const getCourseMetrics = async (
     )
     .groupBy('course_id');
 
-  return metrics.map(toCourseMetrics);
+  return metrics.filter(isValid).map(toCourseMetrics);
 };
