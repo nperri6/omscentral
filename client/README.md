@@ -100,3 +100,7 @@ Note that `npm run build:local` loads environment variables from `.env.local`.
 ### CI
 
 For the live applications, GitHub Actions automate static asset compilation and deployment to Firebase. When code is merged/pushed into the `staging` branch, a new build is deployed to `omscentral-staging.firebaseapp.com`. When code is merged/pushed into `main` branch, a new build is deployed to `omscentral.com`.
+
+### Notes for first run through
+
+If you did not seed the database with reviews then the `/courses` page will be blank on load because the default behavior is to filter out all unreviewed courses. To restore this pages functionality you can run `npm run knex seed:run` in the `client` directory to add fake reviews, or you can add a review by signing in and then clicking the sticky `+` in the bottom right corner -> Create review.
