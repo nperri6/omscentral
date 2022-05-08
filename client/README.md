@@ -103,4 +103,4 @@ For the live applications, GitHub Actions automate static asset compilation and 
 
 ### Notes for first run through
 
-If you did not seed the database with reviews then the `/courses` page will be blank on load because unreviewed courses are filted out. To restore this page's functionality you can run `npm run knex seed:run` in the `client` directory to add fake reviews, or you can add a review by signing in and then clicking the sticky `+` in the bottom right corner -> Create review.
+If you did not seed the database with reviews then the `/courses` page will be blank on load because unreviewed courses are filtered out. To restore this page's functionality you can run `npm run knex seed:run` in the `client` directory to add fake reviews, or you can add a review by signing in and then clicking the sticky `+` in the bottom right corner -> Create review.
