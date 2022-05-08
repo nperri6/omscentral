@@ -82,6 +82,12 @@ npm run knex migrate:latest
 
 If this fails, check the `OMSCENTRAL_POSTGRES_CONNECTION` environment variable and make sure it's configured correctly. If still unsuccessful, try `DEBUG=knex/* npm run knex migrate:latest` to print debugging information to the console to aid in troubleshooting.
 
+To seed the database with reviews run:
+
+```sh
+npm run knex seed:run
+```
+
 ## Start
 
 To start server in development mode w/hot-reloading:
