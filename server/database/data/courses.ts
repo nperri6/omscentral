@@ -483,7 +483,7 @@ export const courses: PMO<Course>[] = [
     number: '8803-08',
     name: 'Compilers: Theory & Practice',
     aliases: [],
-    foundational: false,
+    foundational: true,
     deprecated: false,
     link: 'https://omscs.gatech.edu/cs-8803-o08-compilers-theory-and-practice',
   },
@@ -912,7 +912,7 @@ export const courses: PMO<Course>[] = [
     name: 'Applied Analytics Practicum',
     aliases: [],
     foundational: false,
-    deprecated: true,
+    deprecated: false,
   },
   {
     id: 'MGT-8803',
@@ -995,5 +995,15 @@ export const courses: PMO<Course>[] = [
     foundational: false,
     deprecated: false,
     link: 'https://omscs.gatech.edu/pubp-6725-information-security-policies',
+  },
+  {
+    id: 'VIP-6600',
+    department: 'VIP',
+    number: '6600',
+    name: 'Vertically Integrated Projects',
+    aliases: ['VIP'],
+    foundational: false,
+    deprecated: false,
+    link: 'https://www.vip.gatech.edu/',
   },
 ];
